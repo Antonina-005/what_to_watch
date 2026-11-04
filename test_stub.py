@@ -1,6 +1,5 @@
 import pytest
-
-from run import app  # Импортируем ваше Flask-приложение из файла run.py
+from run import app  # type: ignore # Импортируем ваше Flask-приложение из файла run.py
 
 
 @pytest.fixture
