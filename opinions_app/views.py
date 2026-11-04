@@ -10,6 +10,7 @@ from .models import Opinion
 # Создаем блюпринт для наших страниц
 opinions_bp = Blueprint('opinions', __name__)
 
+
 @opinions_bp.route('/')
 def index_view():
     quantity = Opinion.query.count()
@@ -18,6 +19,7 @@ def index_view():
     offset_value = randrange(quantity)
     opinion = Opinion.query.offset(offset_value).first()
     return render_template('opinion.html', opinion=opinion)
+
 
 @opinions_bp.route('/add', methods=['GET', 'POST'])
 def add_opinion_view():
@@ -33,7 +35,8 @@ def add_opinion_view():
         return redirect(url_for('opinions.opinion_view', id=opinion.id))
     return render_template('add_opinion.html', form=form)
 
+
 @opinions_bp.route('/opinions/<int:id>')
-def opinion_view(id):  
+def opinion_view(id):
     opinion = Opinion.query.get_or_404(id)
     return render_template('opinion.html', opinion=opinion)
